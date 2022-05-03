@@ -86,14 +86,6 @@ class SearchBar extends Component {
                     placeholder={"What are you looking for?"}
                     onChange={this.onChangeSearch}
                 />
-
-                {/* {<select onChange={this.onChangeType} value={this.state.type}>
-                    <option value="show">Show Name</option>
-                    <option value="episode">Episode Title</option>
-                    <option value="transcript">Transcript</option>
-                    <option value="publisher">Publisher</option>
-                    <option value="all">Search All</option>
-                </select>} */}
                 <div style = {dropdown}>
                     <Select
                         name="fields"
@@ -110,11 +102,3 @@ class SearchBar extends Component {
 }
 
 export default SearchBar;
-
-
-/*
-<iframe scrolling="no" frameBorder="0" allowTransparency="true"
-        src="https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=EF5466&layout=&size=medium&type=album&id=1238967&app_id=1"
-        width="700" height="350"></iframe>
-
-https://api.deezer.com/search/album?q=album:%22loud%22%20artist:%22rihanna%22*/
