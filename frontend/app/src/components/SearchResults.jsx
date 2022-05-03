@@ -34,7 +34,7 @@ export default class SearchResults extends React.Component {
     }
 
     renderPod = (pod) => {
-        return <div onClick={() => this.openDetails('pod', { trackId: pod.pod.value }
+        return <div onClick={() => this.openDetails('pod', { trackId: pod.value }
         )} className={"result pod"} key={"pod_" + pod.title.value + pod.publisher.value}>
             <span className="type">Podcast Episode</span>
             <span className="title">{pod.title.value}</span>

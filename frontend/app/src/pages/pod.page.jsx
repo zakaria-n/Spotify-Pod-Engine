@@ -3,11 +3,27 @@ import { CircularProgress } from "@material-ui/core";
 import mediasUtil from '../utils/medias.util';
 import ReactAudioPlayer from 'react-audio-player';
 
+const dummy = [
+    {
+        title: "Decoanne",
+        show: "Speech Dec",
+        publisher: "Anne Baril",
+        snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
+    }, 
+    {
+        title: "Decobe",
+        show: "Speech Dec",
+        publisher: "Kobe Moer",
+        snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
+    }
+]
+
 export default class PodPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            pod : dummy[0],
             notFound: false,
             media: {
                 snippet: ''
@@ -16,46 +32,46 @@ export default class PodPage extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchData();
+        //this.fetchData();
     }
 
     fetchData = async () => {
-        query = this.props.query
-        fields = this.props.fields
-        const formData = new FormData();
-        formData.append('query', query);
-        formData.append('fields', fields);
-        const res = await (await fetch(`http://127.0.0.1:5000/search`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: formData
-        })).json();
-        if (res.results.length) {
-            this.setState({ pod: res.results.bindings[0] }); // redo this based on python API
-            this.setState({ media: { snippet: res.results.snippet } });
-        } else {
-            this.setState({ notFound: true });
-        }
+        // query = this.props.query
+        // fields = this.props.fields
+        // const formData = new FormData();
+        // formData.append('query', query);
+        // formData.append('fields', fields);
+        // const res = await (await fetch(`http://127.0.0.1:5000/search`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json'
+        //     },
+        //     body: formData
+        // })).json();
+        // if (res.results.length) {
+        //     this.setState({ pod: res.results.bindings[0] }); // redo this based on python API
+        //     this.setState({ media: { snippet: res.results.snippet } });
+        // } else {
+        //     this.setState({ notFound: true });
+        // }
 
     }
 
     render = () => {
-        podcast = this.state.pod
+        var podcast = dummy[0]
         return (
             <div className={"page"}>
                 <div className="panel">
                     {this.state.song ?
                         <>
                             <div className="titlebar">
-                                <h1>{podcast.episode}</h1>
-                                <h2>{podcast.shows}</h2>
+                                <h1>{dummy[0].title}</h1>
+                                <h2>{dummy[0].show}</h2>
                             </div>
                             <div className="topbar">
                                 <div>
                                     <strong>Transcript</strong>
-                                    <p>{podcast.transcript}</p>
+                                    <p>{dummy[0].transcript}</p>
                                 </div>
                             </div>
                             <div className="bottombar">

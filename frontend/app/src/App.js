@@ -7,6 +7,20 @@ import SearchResults from "./components/SearchResults";
 import searchDbpediaUtil from './utils/search.dbpedia.util';
 import './style/style.css';
 
+const dummy = [
+    {
+        title: "Decoanne",
+        show: "Speech Dec",
+        publisher: "Anne Baril",
+        snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
+    }, 
+    {
+        title: "Decobe",
+        show: "Speech Dec",
+        publisher: "Kobe Moer",
+        snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
+    }
+]
 
 class App extends Component {
     constructor(props) {
@@ -21,15 +35,12 @@ class App extends Component {
     updateKeyword = async (keywords, fields) => {
         this.setState({ keyword: keywords, fields: fields });
 
-        const groupss = await searchDbpediaUtil.searchGroup(value);
+        const podcasts = dummy;
         this.setState({
-            results: [...albumss.map(a => ({
+            results: [...podcasts.map(a => ({
                 type: 'album',
                 data: a
-            })), ...singerss.map(s => ({ type: 'artist', data: s })), ...trackss.map(t => ({
-                type: 'track',
-                data: t
-            })), ...groupss.map(g => ({ type: 'group', data: g }))]
+            }))]
         });
 
     }
