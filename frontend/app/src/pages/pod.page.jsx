@@ -3,37 +3,21 @@ import { CircularProgress } from "@material-ui/core";
 import mediasUtil from '../utils/medias.util';
 import ReactAudioPlayer from 'react-audio-player';
 
-const dummy = [
-    {
-        title: "Decoanne",
-        show: "Speech Dec",
-        publisher: "Anne Baril",
-        snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
-    }, 
-    {
-        title: "Decobe",
-        show: "Speech Dec",
-        publisher: "Kobe Moer",
-        snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
-    }
-]
 
 export default class PodPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            pod : dummy[0],
+            pod: null,
             notFound: false,
-            media: {
-                snippet: ''
-            }
         }
     }
 
     componentDidMount() {
         //this.fetchData();
         document.body.style.backgroundColor = "#333"
+        this.setState({pod: this.props.pod})
     }
 
     fetchData = async () => {
@@ -64,21 +48,22 @@ export default class PodPage extends React.Component {
                 <div className="panel">
                     {this.state.pod ?
                         <>
+                            {console.log(this.state.pod)}
                             <div className="titlebar">
-                                <h1>{this.state.pod .title}</h1>
-                                <h2>{this.state.pod .show}</h2>
+                                <h1>{this.state.pod.title}</h1>
+                                <h2>{this.state.pod.show}</h2>
                             </div>
                             <div className="topbar">
                                 <div>
                                     <strong>Transcript</strong>
-                                    <p>{this.state.pod .transcript}</p>
+                                    <p>{this.state.pod.transcript}</p>
                                 </div>
                             </div>
                             <div className="bottombar">
                                 <div className="snippet">
-                                    {this.state.pod.snippet ?
+                                    {this.props.pod.snippet ?
                                         <ReactAudioPlayer
-                                            src={this.state.media.snippet}
+                                            src={this.state.pod.snippet}
                                             autoPlay
                                             controls
                                         /> : null

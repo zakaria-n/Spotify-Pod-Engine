@@ -16,10 +16,7 @@ export default class SearchResults extends React.Component {
         super(props);
         this.state = {
             showDetails: false,
-            details: {
-                query: '',
-                fields: [],
-            }
+            pod: null
         }
     }
 
@@ -40,9 +37,9 @@ export default class SearchResults extends React.Component {
     }
 
     renderPod = (pod) => {
-        return <div onClick={() => this.openDetails('pod', { trackId: pod.value }
-        )} className={"result pod"} key={"pod_" + pod.title.value + pod.publisher.value}>
-            {console.log(pod)}
+        return <div onClick={() => this.openDetails(pod)} 
+        className={"result pod"} key={"pod_" + pod.title.value + pod.publisher.value}>
+            {/* {console.log(pod)} */}
             <span className="type">Podcast Episode</span>
             <span className="title">{pod.title}</span>
             <span className="publisher">{pod.publisher}</span>
@@ -57,12 +54,12 @@ export default class SearchResults extends React.Component {
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
-                <PodPage openDetails={this.openDetails} query={this.state.details.query} fields={this.state.details.fields} />
+                <PodPage openDetails={this.openDetails} pod={this.state.pod} />
             </Dialog>);
     }
 
-    openDetails = (type, data) => {
-        this.setState({ showDetails: true, details: { type, ...data } });
+    openDetails = (data) => {
+        this.setState({ showDetails: true, pod: data });
     };
 
     handleClose = () => {
