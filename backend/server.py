@@ -52,8 +52,8 @@ bummy = [
 ]
 
 d = dict()
-d[("jesus","show_name|show_description")] = dummy
-d[("water", "show_name|show_description")] = bummy
+d[("jesus","show|transcript")] = dummy
+d[("water", "show|transcript")] = bummy
 
 class Search(Resource):
     def get(self):    

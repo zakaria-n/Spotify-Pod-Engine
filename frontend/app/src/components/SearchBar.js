@@ -17,32 +17,35 @@ class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            keyword: "",
-            type: { label: "Episode Title", value: "episode" }
+            query: "",
+            fields: []
         };
     }
 
     updateKeyword = () => {
-        this.props.updateKeyword(this.state.keyword.toLowerCase(), this.state.type);
+        this.props.updateKeyword(this.state.query.toLowerCase(), this.state.fields);
     }
 
-    onChangeType = async(value) => {
-        this.setState({ type: value });
+    onChangeType = async(event) => {
+        console.log("on change type")
+        console.log(event)
+        this.setState({ fields: event });
         this.AutoUpload();
         await(5000);
-        console.log(this.state.type)
+        console.log("fields in onchange")
+        console.log(this.state.fields.map(f => (f.value)));
     }
 
     onChangeSearch = async (event) => {
-        this.state.keyword = event.target.value;
-        this.setState({ keyword: event.target.value });
+        this.state.query = event.target.value;
+        this.setState({ query: event.target.value });
         this.AutoUpload();
     }
 
     AutoUpload = async () => {
-        var sts = this.state.keyword;
+        var sts = this.state.query;
         await new Promise(r => setTimeout(r, 100));
-        if (sts === this.state.keyword) {
+        if (sts === this.state.query) {
             this.updateKeyword();
         }
     }
@@ -92,7 +95,7 @@ class SearchBar extends Component {
                         name="fields"
                         options={options}
                         isMulti={true}
-                        value={this.state.type}
+                        value={this.state.fields}
                         onChange={this.onChangeType}
                     />
                 </div>

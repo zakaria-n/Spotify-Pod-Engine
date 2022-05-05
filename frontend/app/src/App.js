@@ -52,7 +52,8 @@ class App extends Component {
 
     updateKeyword = async (query, fields) => {
         this.setState({ query: query, fields: fields });
-
+        console.log("state query: " + this.state.query)
+        console.log("state fields: " + this.state.fields.map(f => (f.value)))
         // const podcasts = 
         this.fetchData();
         // this.setState({
@@ -62,15 +63,15 @@ class App extends Component {
         //     }))]
         // });
 
+
     }
 
     fetchData = async () => {
-        // const query = this.state.query
-        // const fields = this.state.fields.join('|')
-        const formData = new FormData();
+        const query = this.state.query
+        const fields = this.state.fields.map(f => (f.value)).join('|')
         // formData.append('query', query);
         // formData.append('fields', fields);
-        const res = await (await fetch(`http://127.0.0.1:5000/Search`, {
+        const res = await (await fetch(`http://127.0.0.1:5000/Search?query=${query}&fields=${fields}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
