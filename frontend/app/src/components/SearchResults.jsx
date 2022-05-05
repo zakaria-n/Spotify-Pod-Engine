@@ -42,7 +42,7 @@ export default class SearchResults extends React.Component {
             {/* {console.log(pod)} */}
             <span className="type">{pod.title} {pod.start}-{pod.end}</span>
             <span className="title">{pod.show}</span>
-            <span className="publisher">{pod.publisher}</span>
+            {/* <span className="publisher">{pod.publisher}</span> */}
         </div>
     };
 
