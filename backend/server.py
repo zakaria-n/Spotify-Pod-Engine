@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS, cross_origin
+from flask import request
 
 
 app = Flask(__name__)
@@ -10,7 +11,7 @@ api = Api(app)
 
 dummy = [
     {
-        "title": "Testooo",
+        "title": "Jesus1",
         "show": "Speech Dec",
         "publisher": "Anne Baril",
         "snippet": "https://anchor.fm/s/d07a884/podcast/play/8625626/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2019-10-24%2F35451564-44100-2-25ff45e653bd8.mp3",
@@ -19,7 +20,7 @@ dummy = [
         "end": "5:24"
     }, 
     {
-        "title": "Decobe",
+        "title": "Jesus2",
         "show": "Speech Dec",
         "publisher": "Kobe Moerman",
         "snippet": "https://anchor.fm/s/d07a884/podcast/play/8625626/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2019-10-24%2F35451564-44100-2-25ff45e653bd8.mp3",
@@ -29,10 +30,36 @@ dummy = [
     }
 ]
 
+bummy = [
+    {
+        "title": "Water1",
+        "show": "Speech Dec",
+        "publisher": "Anne Baril",
+        "snippet": "https://anchor.fm/s/d07a884/podcast/play/8625626/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2019-10-24%2F35451564-44100-2-25ff45e653bd8.mp3",
+        "transcript": "Coucou c'est Anne",
+        "start": "3:24",
+        "end": "5:24"
+    }, 
+    {
+        "title": "Water2",
+        "show": "Speech Dec",
+        "publisher": "Kobe Moerman",
+        "snippet": "https://anchor.fm/s/d07a884/podcast/play/8625626/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2019-10-24%2F35451564-44100-2-25ff45e653bd8.mp3",
+        "transcript": "Hello c'est Koko",
+        "start": "9:22",
+        "end": "11:42"
+    }
+]
+
+d = dict()
+d[("jesus","show_name|show_description")] = dummy
+d[("water", "show_name|show_description")] = bummy
 
 class Search(Resource):
-    def get(self):        
-        return dummy, 200
+    def get(self):    
+        query = request.args.get("query")
+        fields = request.args.get("fields")
+        return d[(query, fields)], 200
 
 
   
