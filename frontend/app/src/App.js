@@ -53,13 +53,14 @@ class App extends Component {
     updateKeyword = async (query, fields) => {
         this.setState({ query: query, fields: fields });
 
-        const podcasts = this.fetchData();
-        this.setState({
-            results: [...podcasts.map(a => ({
-                type: 'podcast',
-                data: a
-            }))]
-        });
+        // const podcasts = 
+        this.fetchData();
+        // this.setState({
+        //     results: [...podcasts.map(a => ({
+        //         type: 'podcast',
+        //         data: a
+        //     }))]
+        // });
 
     }
 
