@@ -18,12 +18,12 @@ const dummy = [
     {
         title: "Decobe",
         show: "Speech Dec",
-        publisher: "Kobe Moer",
+        publisher: "Kobe Moerman",
         snippet: "/Users/zak/Documents/Spotify-Pod-Engine/frontend/app/public/sample.mp3",
         transcript: "Hello c'est Koko"
     },
     {
-        title: "Derémi",
+        title: "Decorémi",
         show: "Speech Dec",
         publisher: "Rémi Bourge",
         snippet: "/Users/zak/Documents/Spotify-Pod-Engine/frontend/app/public/sample.mp3",

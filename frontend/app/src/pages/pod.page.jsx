@@ -68,7 +68,7 @@ export default class PodPage extends React.Component {
                                             ref="audio_tag"
                                             autoPlay={false}
                                             controls={true}>
-                                            <source type="audio/mp3" src={mp3_file} />
+                                            <source type="audio/mp3" src={new Audio(this.state.pod.snippet)} />
                                         </audio>
                                         : null
                                     }

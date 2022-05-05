@@ -76,6 +76,7 @@ class SearchBar extends Component {
                 position: 'relative', left: '25%'
             }}
             >
+                <br/>
                 <div style={banner}>
                     <h1>Spotify Pod Engine</h1>
                 </div>
