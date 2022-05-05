@@ -1,14 +1,16 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
-
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 api = Api(app)
 
 dummy = [
     {
-        "title": "Decoanne",
+        "title": "Testooo",
         "show": "Speech Dec",
         "publisher": "Anne Baril",
         "snippet": "https://anchor.fm/s/d07a884/podcast/play/8625626/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fproduction%2F2019-10-24%2F35451564-44100-2-25ff45e653bd8.mp3",
