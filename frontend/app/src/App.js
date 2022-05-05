@@ -13,21 +13,27 @@ const dummy = [
         show: "Speech Dec",
         publisher: "Anne Baril",
         snippet: "/Users/zak/Documents/Spotify-Pod-Engine/frontend/app/public/sample.mp3",
-        transcript: "Coucou c'est Anne"
+        transcript: "Coucou c'est Anne",
+        start: "3:24",
+        end: "5:24"
     }, 
     {
         title: "Decobe",
         show: "Speech Dec",
         publisher: "Kobe Moerman",
         snippet: "/Users/zak/Documents/Spotify-Pod-Engine/frontend/app/public/sample.mp3",
-        transcript: "Hello c'est Koko"
+        transcript: "Hello c'est Koko",
+        start: "9:22",
+        end: "11:42"
     },
     {
         title: "Decorémi",
         show: "Speech Dec",
         publisher: "Rémi Bourge",
         snippet: "/Users/zak/Documents/Spotify-Pod-Engine/frontend/app/public/sample.mp3",
-        transcript: "Hello c'est encore Koko mdr"
+        transcript: "Hello c'est encore Koko mdr",
+        start: "7:14",
+        end: "9:14"
     }
 ]
 
