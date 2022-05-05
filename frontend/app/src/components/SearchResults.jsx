@@ -5,6 +5,11 @@ import CloseIcon from "@material-ui/icons/Close";
 import Dialog from "@material-ui/core/Dialog";
 import PodPage from "../pages/pod.page";
 
+const banner = {
+    color: "white",
+    paddingLeft: "2%",
+}
+
 export default class SearchResults extends React.Component {
 
     constructor(props) {
@@ -25,6 +30,7 @@ export default class SearchResults extends React.Component {
     render = () => {
         return (
             <>
+                {this.props.results.length != 0 ? <h2 style={banner}>Search Results</h2> : null}
                 <div className="results">
                     {this.props.results.map(result => this.renderResult(result))}
                 </div>
@@ -36,9 +42,10 @@ export default class SearchResults extends React.Component {
     renderPod = (pod) => {
         return <div onClick={() => this.openDetails('pod', { trackId: pod.value }
         )} className={"result pod"} key={"pod_" + pod.title.value + pod.publisher.value}>
+            {console.log(pod)}
             <span className="type">Podcast Episode</span>
-            <span className="title">{pod.title.value}</span>
-            <span className="publisher">{pod.publisher.value}</span>
+            <span className="title">{pod.title}</span>
+            <span className="publisher">{pod.publisher}</span>
         </div>
     };
 

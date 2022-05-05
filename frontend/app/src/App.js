@@ -19,6 +19,12 @@ const dummy = [
         show: "Speech Dec",
         publisher: "Kobe Moer",
         snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
+    },
+    {
+        title: "Decobe",
+        show: "Speech Dec",
+        publisher: "Kobe Moer",
+        snippet: "/Users/zak/Music/Music/Media.localized/Unknown Artist/Unknown Album/GamlaStanZN.mp3"
     }
 ]
 
@@ -32,13 +38,17 @@ class App extends Component {
         };
     }
 
+    componentDidMount() {
+        document.body.style.backgroundColor = "#333"
+    }
+
     updateKeyword = async (keywords, fields) => {
         this.setState({ keyword: keywords, fields: fields });
 
         const podcasts = dummy;
         this.setState({
             results: [...podcasts.map(a => ({
-                type: 'album',
+                type: 'podcast',
                 data: a
             }))]
         });
@@ -47,7 +57,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div class="app">
                 <SearchBar updateKeyword={this.updateKeyword} />
                 <SearchResults results={this.state.results} />
             </div>

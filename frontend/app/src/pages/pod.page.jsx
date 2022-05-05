@@ -33,6 +33,7 @@ export default class PodPage extends React.Component {
 
     componentDidMount() {
         //this.fetchData();
+        document.body.style.backgroundColor = "#333"
     }
 
     fetchData = async () => {
@@ -58,25 +59,24 @@ export default class PodPage extends React.Component {
     }
 
     render = () => {
-        var podcast = dummy[0]
         return (
             <div className={"page"}>
                 <div className="panel">
-                    {this.state.song ?
+                    {this.state.pod ?
                         <>
                             <div className="titlebar">
-                                <h1>{dummy[0].title}</h1>
-                                <h2>{dummy[0].show}</h2>
+                                <h1>{this.state.pod .title}</h1>
+                                <h2>{this.state.pod .show}</h2>
                             </div>
                             <div className="topbar">
                                 <div>
                                     <strong>Transcript</strong>
-                                    <p>{dummy[0].transcript}</p>
+                                    <p>{this.state.pod .transcript}</p>
                                 </div>
                             </div>
                             <div className="bottombar">
                                 <div className="snippet">
-                                    {this.state.media.snippet ?
+                                    {this.state.pod.snippet ?
                                         <ReactAudioPlayer
                                             src={this.state.media.snippet}
                                             autoPlay
