@@ -4,7 +4,6 @@ import { Component } from "react";
 import React from "react";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
-import searchDbpediaUtil from './utils/search.dbpedia.util';
 import './style/style.css';
 
 const dummy = [
@@ -41,7 +40,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            keyword: null,
+            query: null,
             fields: [],
             results: [],
         };
@@ -51,10 +50,10 @@ class App extends Component {
         document.body.style.backgroundColor = "#333"
     }
 
-    updateKeyword = async (keywords, fields) => {
-        this.setState({ keyword: keywords, fields: fields });
+    updateKeyword = async (query, fields) => {
+        this.setState({ query: query, fields: fields });
 
-        const podcasts = dummy;
+        const podcasts = this.fetchData();
         this.setState({
             results: [...podcasts.map(a => ({
                 type: 'podcast',
@@ -62,6 +61,27 @@ class App extends Component {
             }))]
         });
 
+    }
+
+    fetchData = async () => {
+        const query = this.props.query
+        const fields = this.props.fields.join('|')
+        const formData = new FormData();
+        formData.append('query', query);
+        formData.append('fields', fields);
+        const res = await (await fetch(`http://127.0.0.1:5000/Search`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: formData
+        })).json();
+        if (res.length) {
+            this.setState({ results: res }); // redo this based on python API
+  
+        } else {
+            this.setState({ notFound: true });
+        }
     }
 
     render() {
