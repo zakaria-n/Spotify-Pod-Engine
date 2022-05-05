@@ -78,7 +78,13 @@ class App extends Component {
             body: formData
         })).json();
         if (res.length) {
-            this.setState({ results: res }); // redo this based on python API
+            // this.setState({ results: res }); // redo this based on python API
+            this.setState({
+                    results: [...res.map(a => ({
+                        type: 'podcast',
+                        data: a
+                    }))]
+                });
   
         } else {
             this.setState({ notFound: true });
