@@ -2,6 +2,7 @@ import React from "react";
 import { CircularProgress } from "@material-ui/core";
 import mediasUtil from '../utils/medias.util';
 import ReactAudioPlayer from 'react-audio-player';
+import mp3_file from '../sounds/sample.mp3';
 
 
 export default class PodPage extends React.Component {
@@ -17,7 +18,7 @@ export default class PodPage extends React.Component {
     componentDidMount() {
         //this.fetchData();
         document.body.style.backgroundColor = "#333"
-        this.setState({pod: this.props.pod})
+        this.setState({ pod: this.props.pod })
     }
 
     fetchData = async () => {
@@ -61,12 +62,15 @@ export default class PodPage extends React.Component {
                             </div>
                             <div className="bottombar">
                                 <div className="snippet">
-                                    {this.props.pod.snippet ?
-                                        <ReactAudioPlayer
-                                            src={this.state.pod.snippet}
-                                            autoPlay
-                                            controls
-                                        /> : null
+                                    {console.log(this.state.pod.snippet)}
+                                    {this.state.pod.snippet ?
+                                        <audio
+                                            ref="audio_tag"
+                                            autoPlay={false}
+                                            controls={true}>
+                                            <source type="audio/mp3" src={mp3_file} />
+                                        </audio>
+                                        : null
                                     }
                                 </div>
                             </div>
