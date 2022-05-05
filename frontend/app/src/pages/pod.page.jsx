@@ -51,7 +51,7 @@ export default class PodPage extends React.Component {
                         <>
                             {console.log(this.state.pod)}
                             <div className="titlebar">
-                                <h1>{this.state.pod.title}</h1>
+                                <h1>{this.state.pod.title}  {this.state.pod.start}-{this.state.pod.end}</h1>
                                 <h2>{this.state.pod.show}</h2>
                             </div>
                             <div className="topbar">
