@@ -65,18 +65,18 @@ class App extends Component {
     }
 
     fetchData = async () => {
-        const query = this.props.query
-        const fields = this.props.fields.join('|')
+        // const query = this.state.query
+        // const fields = this.state.fields.join('|')
         const formData = new FormData();
-        formData.append('query', query);
-        formData.append('fields', fields);
+        // formData.append('query', query);
+        // formData.append('fields', fields);
         const res = await (await fetch(`http://127.0.0.1:5000/Search`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
-            },
-            body: formData
+            }
         })).json();
+        console.log(res);
         if (res.length) {
             // this.setState({ results: res }); // redo this based on python API
             this.setState({
