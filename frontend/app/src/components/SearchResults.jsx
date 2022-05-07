@@ -30,7 +30,7 @@ export default class SearchResults extends React.Component {
     render = () => {
         return (
             <>
-                {this.props.results.length != 0 ? <h2 style={banner}>{this.props.results.length}&nbsp;Search Results</h2> : null}
+                {this.props.results.length != 0 ? <h2 style={banner}>{this.props.results.length}&nbsp;Search Results {'('+parseFloat(this.props.elapsed).toFixed(2)}s)</h2> : null}
                 <div key = {this.props.results} className="results">
                     {this.props.results.map(result => this.renderResult(result))}
                 </div>

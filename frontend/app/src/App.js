@@ -48,7 +48,8 @@ class App extends Component {
             query: null,
             fields: [],
             results: [],
-            notFound: false
+            notFound: false,
+            elapsed: null
         };
     }
 
@@ -78,32 +79,38 @@ class App extends Component {
         const fields = this.state.fields.map(f => (f.value)).join('|')
         // formData.append('query', query);
         // formData.append('fields', fields);
-        const res = await (await fetch(`http://e6f4-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, {
+        const res = await (await fetch(`http://4918-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
             }
         })).json();
         console.log(res);
-        if (res.length) {
-            // this.setState({ results: res }); // redo this based on python API
-            this.setState({
-                    results: [...res.map(a => ({
-                        type: 'podcast',
-                        data: a
-                    }))]
-                });
-  
-        } else {
-            this.setState({ notFound: true });
+        try {
+            if (res.result.length) {
+                // this.setState({ results: res }); // redo this based on python API
+                this.setState({
+                        results: [...res.result.map(a => ({
+                            type: 'podcast',
+                            data: a
+                        }))],
+                        elapsed: res.search_time
+                    });
+      
+            } else {
+                this.setState({ notFound: true });
+            }
+        } catch (error) {
+            throw("Server Error");
         }
+        
     }
 
     render() {
         return (
             <div class="app">
                 <SearchBar updateKeyword={this.updateKeyword} />
-                <SearchResults results={this.state.results} />
+                <SearchResults results={this.state.results} elapsed={this.state.elapsed} />
             </div>
         );
     }
