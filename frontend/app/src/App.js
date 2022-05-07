@@ -6,6 +6,11 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import './style/style.css';
 
+const banner = {
+    color: "white",
+    paddingLeft: "2%",
+}
+
 const dummy = [
     {
         title: "Decoanne",
@@ -43,6 +48,7 @@ class App extends Component {
             query: null,
             fields: [],
             results: [],
+            notFound: false
         };
     }
 
@@ -72,7 +78,7 @@ class App extends Component {
         const fields = this.state.fields.map(f => (f.value)).join('|')
         // formData.append('query', query);
         // formData.append('fields', fields);
-        const res = await (await fetch(`http://38e6-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, {
+        const res = await (await fetch(`http://e6f4-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'

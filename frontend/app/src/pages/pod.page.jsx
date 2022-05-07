@@ -74,8 +74,8 @@ export default class PodPage extends React.Component {
                         <>
                             {console.log(this.state.pod)}
                             <div className="titlebar">
-                                <h1>{this.state.pod.title}  {new Date(this.state.pod.start * 1000).toISOString().substr(11, 8)}-{new Date(this.state.pod.end * 1000).toISOString().substr(11, 8)}</h1>
-                                <h2>{this.state.pod.show}</h2>
+                                <h1 style={{color: "white"}}>{this.state.pod.title}  {new Date(this.state.pod.start * 1000).toISOString().substr(11, 8)}-{new Date(this.state.pod.end * 1000).toISOString().substr(11, 8)}</h1>
+                                <h2 style={{color: "white"}}>{this.state.pod.show}</h2>
                             </div>
                             <div className="topbar">
                                 <div>
