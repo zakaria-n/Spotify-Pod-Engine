@@ -99,7 +99,7 @@ export default class PodPage extends React.Component {
                                     {console.log(this.state.pod.snippet)}
                                     {this.state.pod.snippet ?
                                         <audio
-                                            style = {{width: "1060px"}}
+                                            style = {{width: "1055px"}}
                                             error="audioError"
                                             ref="audio_tag"
                                             autoPlay={false}

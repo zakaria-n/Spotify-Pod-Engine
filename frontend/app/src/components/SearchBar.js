@@ -95,7 +95,7 @@ class SearchBar extends Component {
                 <br />
                 <div style={banner}>
                     <Icon icon="mdi:spotify" style={{ fontSize: '28px', verticalAlign: "middle", dataAlign:"center" }} />
-                    <h1>&nbsp;&nbsp;Spotify Podcast Engine</h1>
+                    <h1>&nbsp;&nbsp;Spotify Podcast Search</h1>
                 </div>
                 <input
                     style={BarStyling}
