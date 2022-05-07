@@ -41,7 +41,7 @@ export default class SearchResults extends React.Component {
 
     renderPod = (pod) => {
         return <div onClick={() => this.openDetails(pod)} 
-        className={"result pod"} key={"pod_" + pod.title}>
+        className={"result pod"} key={"pod_" + pod.title +Math.random()}>
             {/* {console.log(pod)} */}
             <span className="type">{pod.title} {new Date(pod.start * 1000).toISOString().substr(11, 8)}-{new Date(pod.end * 1000).toISOString().substr(11, 8)}</span>
             <span style={show}>{pod.show}</span>
