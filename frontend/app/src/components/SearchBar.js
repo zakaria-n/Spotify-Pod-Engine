@@ -86,7 +86,7 @@ class SearchBar extends Component {
         return (
             <div style={{
                 position: 'relative',
-                left: '12%',
+                left: '14%',
                 display: "block",
                 margin: "auto",
                 top: '30%'

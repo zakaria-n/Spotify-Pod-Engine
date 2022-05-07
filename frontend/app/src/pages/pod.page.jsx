@@ -100,10 +100,12 @@ export default class PodPage extends React.Component {
                                     {this.state.pod.snippet ?
                                         <audio
                                             style = {{width: "1060px"}}
+                                            error="audioError"
                                             ref="audio_tag"
                                             autoPlay={false}
                                             controls={true}
-                                            src={this.state.pod.snippet}>
+                                            src={this.state.pod.snippet}
+                                        >
                                         </audio>
                                         //this.renderButtonSound()
                                         // <Snippet url={this.state.pod.snippet}></Snippet>

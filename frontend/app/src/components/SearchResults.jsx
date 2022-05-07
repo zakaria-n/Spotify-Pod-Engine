@@ -43,8 +43,8 @@ export default class SearchResults extends React.Component {
         return <div onClick={() => this.openDetails(pod)} 
         className={"result pod"} key={"pod_" + pod.title +Math.random()}>
             {/* {console.log(pod)} */}
-            <span className="type">{pod.title} {new Date(pod.start * 1000).toISOString().substr(11, 8)}-{new Date(pod.end * 1000).toISOString().substr(11, 8)}</span>
-            <span style={show}>{pod.show}</span>
+            <span style={show}>{pod.title} {new Date(pod.start * 1000).toISOString().substr(11, 8)}-{new Date(pod.end * 1000).toISOString().substr(11, 8)}</span>
+            <span className="type">{pod.show}</span>
             <span className="publisher">{pod.publisher}</span>
         </div>
     };
