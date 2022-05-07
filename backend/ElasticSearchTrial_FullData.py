@@ -12,11 +12,15 @@ import json
 import xml.etree.ElementTree as ET
 from tfidf import TfIdf
 from flask import Flask
+from flask import request
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS, cross_origin
+from flask_ngrok import run_with_ngrok
+
 
 app = Flask(__name__)
 cors = CORS(app)
+run_with_ngrok(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 api = Api(app)
 
@@ -158,6 +162,7 @@ class ElasticSearchClient:
             result.append((query.split(), doc['_source']['show_filename_prefix'], doc['_source']['episode_filename_prefix'], doc['_score']))
         return result
 
+
 es = ElasticSearchClient()
         
 class Search(Resource):
@@ -166,16 +171,23 @@ class Search(Resource):
         parser.add_argument('query', required=True)
         parser.add_argument('fields', required=True)
         args = parser.parse_args()
+        query = request.args.get("query")
+        fields = request.args.get("fields")
+        print(fields)
         
         start = time.time()
-        results = es.search(args['query'], args['fields'].split('|'))
+        if "all" in fields:
+            results = es.search(query)
+        else:
+            results = es.search(query, fields.split('|'))
+        if results == []:
+            print("No releavnt episode")
+            return [], 200
         result = getClips(results, 120, 10)
         print("Time to search: ",(time.time()-start))
-        print(result[0])
+        #print(result[0])
         return result, 200
-
-
-    
+  
     
 # In[109]:
 
@@ -188,24 +200,30 @@ class transcript():
         self.content = content
 
 def getClips(res, n_minute, n_clips):
+    global transcriptLst
+    global idx
+    #print(res)
     result = []
+    transcriptLst = []
+    idx = 0
     episode_frequency = {}
     for (qr, show, episode, score) in res:
         episode_frequency[episode] = 0
-        subdir1, subdir2 = show.split('_')[1][0], show.split('_')[1][1]
-        transcript_json_dir = os.path.join(transcript_dir, subdir1, subdir2, show, episode+'.json')
-        rss_xml_dir = os.path.join(rss_dir, subdir1, subdir2, show+'.xml')
-        rss_tree = ET.parse(rss_xml_dir)
-        rss_root = rss_tree.getroot()
         try:
+            subdir1, subdir2 = show.split('_')[1][0], show.split('_')[1][1]
+            transcript_json_dir = os.path.join(transcript_dir, subdir1, subdir2, show, episode+'.json')
+            rss_xml_dir = os.path.join(rss_dir, subdir1, subdir2, show+'.xml')
+            rss_tree = ET.parse(rss_xml_dir)
+            rss_root = rss_tree.getroot()
             rss_url = getUrlFromXml(rss_root)
         except Exception as e:
-            #print(rss_xml_dir)
+            print(rss_xml_dir)
             continue
         with open(transcript_json_dir, ) as f:
             transcript_json = json.load(f)
             
             addDocuments(transcript_json, score, show, episode, rss_url)
+    #print(transcriptLst)
     getRelevantClips(qr)
     
     rankingTranscript()
@@ -214,7 +232,7 @@ def getClips(res, n_minute, n_clips):
     for element in transcriptLst:
         show, episode, rss_url, start, end, trans = trans2ID[element.id]
         cnt = element.id
-        if element.score == 0 or episode_frequency[episode] >= n_clips:
+        if element.score == 0: #or episode_frequency[episode] >= n_clips:
             continue
         final_trans = trans    
         while cnt + 1 < idx:
