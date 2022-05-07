@@ -9,6 +9,9 @@ const banner = {
     color: "white",
     paddingLeft: "2%",
 }
+const show = {
+    color: "white",
+}
 
 export default class SearchResults extends React.Component {
 
@@ -28,7 +31,7 @@ export default class SearchResults extends React.Component {
         return (
             <>
                 {this.props.results.length != 0 ? <h2 style={banner}>Search Results</h2> : null}
-                <div className="results">
+                <div key = {this.props.results} className="results">
                     {this.props.results.map(result => this.renderResult(result))}
                 </div>
                 {this.renderDetails()}
@@ -38,11 +41,11 @@ export default class SearchResults extends React.Component {
 
     renderPod = (pod) => {
         return <div onClick={() => this.openDetails(pod)} 
-        className={"result pod"} key={"pod_" + pod.title.value + pod.publisher.value}>
+        className={"result pod"} key={"pod_" + pod.title}>
             {/* {console.log(pod)} */}
-            <span className="type">{pod.title} {pod.start}-{pod.end}</span>
-            <span className="title">{pod.show}</span>
-            {/* <span className="publisher">{pod.publisher}</span> */}
+            <span className="type">{pod.title} {new Date(pod.start * 1000).toISOString().substr(11, 8)}-{new Date(pod.end * 1000).toISOString().substr(11, 8)}</span>
+            <span style={show}>{pod.show}</span>
+            <span className="publisher">{pod.publisher}</span>
         </div>
     };
 

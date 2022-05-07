@@ -51,10 +51,11 @@ class App extends Component {
     }
 
     updateKeyword = async (query, fields) => {
+        this.setState({
+            results: []});
         this.setState({ query: query, fields: fields });
         console.log("state query: " + this.state.query)
         console.log("state fields: " + this.state.fields.map(f => (f.value)))
-        // const podcasts = 
         this.fetchData();
         // this.setState({
         //     results: [...podcasts.map(a => ({
@@ -71,7 +72,7 @@ class App extends Component {
         const fields = this.state.fields.map(f => (f.value)).join('|')
         // formData.append('query', query);
         // formData.append('fields', fields);
-        const res = await (await fetch(`http://127.0.0.1:5000/Search?query=${query}&fields=${fields}`, {
+        const res = await (await fetch(`http://38e6-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'

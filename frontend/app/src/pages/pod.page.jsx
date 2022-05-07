@@ -4,8 +4,9 @@ import mediasUtil from '../utils/medias.util';
 import ReactAudioPlayer from 'react-audio-player';
 import mp3_file from '../sounds/sample.mp3';
 import AudioPlayerDOM from "./AudioPlayerDom";
-import {Howl} from 'howler';
+import { Howl } from 'howler';
 import Snippet from './snippet';
+import { Link } from '@material-ui/core';
 
 export default class PodPage extends React.Component {
 
@@ -55,7 +56,7 @@ export default class PodPage extends React.Component {
 
     renderButtonSound = () => {
         return (
-            <Button style={{backgroundColor:"white"}} onClick={() => this.soundPlay(this.state.pod.snippet)}>
+            <Button style={{ backgroundColor: "white" }} onClick={() => this.soundPlay(this.state.pod.snippet)}>
                 Play Snippet
             </Button>
         )
@@ -73,7 +74,7 @@ export default class PodPage extends React.Component {
                         <>
                             {console.log(this.state.pod)}
                             <div className="titlebar">
-                                <h1>{this.state.pod.title}  {this.state.pod.start}-{this.state.pod.end}</h1>
+                                <h1>{this.state.pod.title}  {new Date(this.state.pod.start * 1000).toISOString().substr(11, 8)}-{new Date(this.state.pod.end * 1000).toISOString().substr(11, 8)}</h1>
                                 <h2>{this.state.pod.show}</h2>
                             </div>
                             <div className="topbar">
@@ -98,6 +99,9 @@ export default class PodPage extends React.Component {
                                     }
                                 </div>
                             </div>
+                            <Link href={this.state.pod.snippet} color="inherit">
+                                {'Go to Podcast'}
+                            </Link>
                         </>
                         : this.state.notFound ? <span>No search results.</span> : <CircularProgress className={"loading"} />}
                 </div>
