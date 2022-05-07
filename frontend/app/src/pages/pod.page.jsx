@@ -62,6 +62,17 @@ export default class PodPage extends React.Component {
         )
     }
 
+    playAudio = async () => {
+        const importRes = await import(this.state.pod.snippet); 
+        var audio = new Audio(importRes.default);
+        try {
+          await audio.play();
+          console.log("Playing audio");
+        } catch (err) {
+          console.log("Failed to play, error: " + err);
+        }
+    }
+
     render = () => {
         if (this.state.pod) {
             // var audio_src = new Audio('../sounds/sample.mp3');
@@ -79,29 +90,30 @@ export default class PodPage extends React.Component {
                             </div>
                             <div className="topbar">
                                 <div>
-                                    <strong>Transcript</strong>
-                                    <p>{this.state.pod.transcript}</p>
+                                    <strong style={{color: "grey"}}>Transcript</strong>
+                                    <p style={{color: "white"}}>{this.state.pod.transcript}</p>
                                 </div>
                             </div>
                             <div className="bottombar">
                                 <div className="snippet">
                                     {console.log(this.state.pod.snippet)}
                                     {this.state.pod.snippet ?
-                                        // <audio
-                                        //     ref="audio_tag"
-                                        //     autoPlay={false}
-                                        //     controls={true}
-                                        //     src={mp3_file}>
-                                        // </audio>
+                                        <audio
+                                            style = {{width: "1060px"}}
+                                            ref="audio_tag"
+                                            autoPlay={false}
+                                            controls={true}
+                                            src={this.state.pod.snippet}>
+                                        </audio>
                                         //this.renderButtonSound()
-                                        <Snippet url={this.state.pod.snippet}></Snippet>
+                                        // <Snippet url={this.state.pod.snippet}></Snippet>
                                         : null
                                     }
                                 </div>
                             </div>
-                            <Link href={this.state.pod.snippet} color="inherit">
+                            {/* <Link href={this.state.pod.snippet} color="inherit">
                                 {'Go to Podcast'}
-                            </Link>
+                            </Link> */}
                         </>
                         : this.state.notFound ? <span>No search results.</span> : <CircularProgress className={"loading"} />}
                 </div>

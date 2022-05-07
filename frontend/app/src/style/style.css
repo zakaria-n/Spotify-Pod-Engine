@@ -112,11 +112,12 @@ table td button {
     padding: 20px;
     margin: 5px 10px;
     padding-top: 30px;
-    box-shadow: 0 0 2px 0 black;
+    box-shadow: 0 0 2px 0 grey;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     position: relative;
+    border-radius: 10px;
 }
 
 .results .result:hover {

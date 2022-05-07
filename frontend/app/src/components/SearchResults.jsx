@@ -51,9 +51,14 @@ export default class SearchResults extends React.Component {
 
     renderDetails = () => {
         return (
-            <Dialog onClose={this.handleClose} open={this.state.showDetails} fullScreen={true}>
+            <Dialog onClose={this.handleClose} open={this.state.showDetails} fullScreen={true} PaperProps={{
+                style: {
+                  backgroundColor: 'transparent',
+                  boxShadow: 'none',
+                },
+              }}>
                 <DialogTitle id="simple-dialog-title">
-                    <IconButton onClick={this.handleClose}>
+                    <IconButton onClick={this.handleClose} style={{color: "white"}}>
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
