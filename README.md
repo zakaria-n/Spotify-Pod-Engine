@@ -14,7 +14,7 @@ We require the following data files and folders whose location needs to be chang
 
 # Start the backend server
 The search engine is served as a webservice using the Flask framework. You need to install the following dependencies: ```elasticsearch, tfidf, flask, flask_cors, flask_restful and flask_ngrok```.
-You can run the server by running the backend/ElasticSearchTrial_FullData.py script after setting up your elastic search client:
+You can run the server by running the backend/Server.py script after setting up your elastic search client:
 
 Upon completing this, you should see on the terminal that your server can be queried from a public ngrok URL. You can remove all the ngrok parts from the python code to run everything locally on http://127.0.0.1:5000, but if you want to run the server and the clients on different machines, you will want to publicly expose your backend, for which we recommend the ngrok tunnel redirection that we set up. 
 
