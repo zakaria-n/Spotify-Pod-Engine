@@ -171,22 +171,25 @@ class Search(Resource):
         parser.add_argument('query', required=True)
         parser.add_argument('fields', required=True)
         args = parser.parse_args()
-        query = request.args.get("query")
+        query = request.args.get("query").upper()
         fields = request.args.get("fields")
         print(fields)
-        
+
         start = time.time()
         if "all" in fields:
             results = es.search(query)
         else:
             results = es.search(query, fields.split('|'))
         if results == []:
-            print("No releavnt episode")
-            return [], 200
-        result = getClips(results, 120, 10)
-        print("Time to search: ",(time.time()-start))
+            print("No relevant episode")
+            search_time = time.time()-start
+            return {"search_time":search_time, "result": []}, 200
+        result = getClips(results, 120, 2)
+        search_time = time.time()-start
+        print("Time to search: ",search_time)
         #print(result[0])
-        return result, 200
+        
+        return {"search_time":search_time, "result": result}, 200
   
     
 # In[109]:
@@ -229,17 +232,25 @@ def getClips(res, n_minute, n_clips):
     rankingTranscript()
     # for element in transcriptLst:
     #     print(element.id, element.score)
+    visited_elements = []
     for element in transcriptLst:
+        if element.id in visited_elements:
+            continue
         show, episode, rss_url, start, end, trans = trans2ID[element.id]
         cnt = element.id
-        if element.score == 0: #or episode_frequency[episode] >= n_clips:
+        visited_elements.append(cnt)
+        try:
+            if element.score == 0 or episode_frequency[episode] >= n_clips:
+                continue
+        except Exception as e:
             continue
-        final_trans = trans    
+        final_trans = trans        
         while cnt + 1 < idx:
             if trans2ID[cnt + 1][1] != episode or (trans2ID[cnt + 1][-2] - start) > n_minute:
                 break
             end = trans2ID[cnt + 1][-2]
             final_trans += trans2ID[cnt + 1][-1]
+            visited_elements.append(cnt+1)
             cnt += 1
         result.append({"show":showhash2name[show], "title":episodehash2name[episode], "snippet":rss_url, "start":start, "end":end, "transcript":final_trans})
         episode_frequency[episode] += 1
