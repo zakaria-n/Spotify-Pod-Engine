@@ -80,7 +80,7 @@ class App extends Component {
         const fields = this.state.fields.map(f => (f.value)).join('|')
         // formData.append('query', query);
         // formData.append('fields', fields);
-        const res = await (await fetch(`http://49c7-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, {
+        const res = await (await fetch(`http://49c7-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, { // New URL here
             method: 'GET',
             headers: {
                 'Accept': 'application/json'

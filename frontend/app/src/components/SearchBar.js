@@ -78,15 +78,13 @@ class SearchBar extends Component {
             backgroundColor: "rgb(29, 185, 84)",
             color: "#fff",
             borderRadius: "20px",
-            //position: "relative",
             display: "flex",
             flexDirection: "row"
-            //display: "flex"
         }
         return (
             <div style={{
                 position: 'relative',
-                left: '14%',
+                left: '13.5%',
                 display: "block",
                 margin: "auto",
                 top: '30%'
@@ -95,7 +93,7 @@ class SearchBar extends Component {
                 <br />
                 <div style={banner}>
                     <Icon icon="mdi:spotify" style={{ fontSize: '28px', verticalAlign: "middle", dataAlign:"center" }} />
-                    <h1>&nbsp;&nbsp;Spotify Podcast Search</h1>
+                    <h1>&nbsp;&nbsp;Spotify Podcast Engine</h1>
                 </div>
                 <input
                     style={BarStyling}

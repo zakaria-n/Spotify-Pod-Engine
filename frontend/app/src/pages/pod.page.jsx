@@ -1,12 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Button, CircularProgress } from "@material-ui/core";
-import mediasUtil from '../utils/medias.util';
-import ReactAudioPlayer from 'react-audio-player';
-import mp3_file from '../sounds/sample.mp3';
-import AudioPlayerDOM from "./AudioPlayerDom";
 import { Howl } from 'howler';
-import Snippet from './snippet';
-import { Link } from '@material-ui/core';
+
 
 export default class PodPage extends React.Component {
 
@@ -25,25 +20,7 @@ export default class PodPage extends React.Component {
     }
 
     fetchData = async () => {
-        // query = this.props.query
-        // fields = this.props.fields
-        // const formData = new FormData();
-        // formData.append('query', query);
-        // formData.append('fields', fields);
-        // const res = await (await fetch(`http://127.0.0.1:5000/search`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json'
-        //     },
-        //     body: formData
-        // })).json();
-        // if (res.results.length) {
-        //     this.setState({ pod: res.results.bindings[0] }); // redo this based on python API
-        //     this.setState({ media: { snippet: res.results.snippet } });
-        // } else {
-        //     this.setState({ notFound: true });
-        // }
-
+    
     }
 
     soundPlay = (src) => {
@@ -74,10 +51,6 @@ export default class PodPage extends React.Component {
     }
 
     render = () => {
-        if (this.state.pod) {
-            // var audio_src = new Audio('../sounds/sample.mp3');
-            // audio_src.load();
-        }
         return (
             <div className={"page"}>
                 <div className="panel">
