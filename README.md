@@ -10,5 +10,5 @@ Upon completing this, you should see on the terminal that your server can be que
 
 # Start the React application
 Update the API endpoint in frontend/app/src/App.js line 83 and from frontend/app run:
-```npm install```followed by ```npm start```. This assumes that you have Node.js installed on your machine. You now have a client running in localhost:3000 where you finally have user-friendly access to the Search Engine! 
+```npm install``` followed by ```npm start```. This assumes that you have Node.js installed on your machine. You now have a client running in localhost:3000 where you finally have user-friendly access to the Search Engine! 
 If you want to test everything from yet another device, you can run ngrok on port 3000 which will make the React app accessible from anywhere, after following the ngrok authorisation instructions. 
