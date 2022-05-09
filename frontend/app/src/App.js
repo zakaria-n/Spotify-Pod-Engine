@@ -36,7 +36,7 @@ class App extends Component {
     fetchData = async () => {
         const query = this.state.query
         const fields = this.state.fields.map(f => (f.value)).join('|')
-        const res = await (await fetch(`http://49c7-2001-6b0-1-1041-24ed-a284-bb82-95da.ngrok.io/Search?query=${query}&fields=${fields}`, { // New URL here
+        const res = await (await fetch(`http://4f59-2001-6b0-1-1041-d8c3-7406-702d-774.ngrok.io/Search?query=${query}&fields=${fields}`, { // New URL here
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -57,7 +57,7 @@ class App extends Component {
                 this.setState({ notFound: true });
             }
         } catch (error) {
-            throw("Server Error:",error);
+            throw("Server Error");
         }
         
     }
